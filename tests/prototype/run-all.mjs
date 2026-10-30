@@ -45,6 +45,7 @@ const TESTS = [
   ['後端', 'core/backend-test.mjs', ['{proto}', '{out}', '{port}', '{fake}']],
   ['安裝', 'core/install-test.mjs', ['{proto}', '{out}', '{port}', '{fake}']],
   ['插件打包', 'core/plugin-bundle-test.mjs', ['{proto}', '{out}', '{port}', '{fake}']],
+  ['更新', 'core/update-test.mjs', ['{proto}', '{out}', '{port}', '{fake}']],
   ['AI 工具啟動殼', 'core/host-shim-test.mjs', ['{proto}', '{out}', '{port}']],
   ['旅程（主線）', 'core/journey.mjs', ['{chrome}', '{out}', '{proto}', '{fake}', '{port}', 'main'], true],
   ['旅程（出錯）', 'core/journey.mjs', ['{chrome}', '{out}', '{proto}', '{fake}', '{port}', 'errors'], true],

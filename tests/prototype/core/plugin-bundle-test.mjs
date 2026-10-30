@@ -32,10 +32,11 @@ try {
   ok('MANIFEST.sha256 列齊每個程式檔同正確雜湊', man.length === want.length && man.every(([h, f]) => want.includes(f) && sha(path.join(PROG, f)) === h), man.length + ' vs ' + want.length);
   const pj = JSON.parse(fs.readFileSync(path.join(PLUGIN_SRC, 'startup-os', '.claude-plugin', 'plugin.json'), 'utf8')), mk = JSON.parse(fs.readFileSync(path.join(PLUGIN_SRC, '.claude-plugin', 'marketplace.json'), 'utf8'));
   ok('插件資訊檔同市集檔版本一致', pj.version === mk.version && mk.plugins.every(p => p.version === pj.version), { plugin: pj.version, market: mk.version });
-  const skills = ['install', 'desk', 'dashboard'].map(s => path.join(PLUGIN_SRC, 'startup-os', 'skills', s, 'SKILL.md'));
-  ok('三個指令齊（install、desk、dashboard）', skills.every(f => fs.existsSync(f)), skills.filter(f => !fs.existsSync(f)));
-  const sk = Object.fromEntries(['install', 'desk'].map((s, i) => [s, fs.existsSync(skills[i]) ? fs.readFileSync(skills[i], 'utf8') : '']));
+  const skills = ['install', 'desk', 'dashboard', 'update'].map(s => path.join(PLUGIN_SRC, 'startup-os', 'skills', s, 'SKILL.md'));
+  ok('四個指令齊（install、desk、dashboard、update）', skills.every(f => fs.existsSync(f)), skills.filter(f => !fs.existsSync(f)));
+  const sk = Object.fromEntries(['install', 'desk', 'dashboard', 'update'].map((s, i) => [s, fs.existsSync(skills[i]) ? fs.readFileSync(skills[i], 'utf8') : '']));
   ok('install 技能：安裝前講明會登記觀察資料夾，最後一步用 --desk --observe 登記項目根（唔使創辦人貼路徑）', /觀察資料夾/.test(sk.install) && /--desk --observe "<項目根>"/.test(sk.install));
+  ok('update 技能：寫入前先檢查再停等創辦人答「好」、用 --apply 執行、有「還原上一個版本」、唔手改 data/', /--apply/.test(sk.update) && /還原上一個版本/.test(sk.update) && /--rollback/.test(sk.update) && /好嗎/.test(sk.update) && sk.update.includes('startup-os/data/') && fs.existsSync(path.join(PLUGIN_SRC, 'startup-os', 'program', 'update.mjs')));
   ok('desk 技能：問題包草稿寫去系統暫存資料夾、唔寫入項目資料夾，放上之後刪走', /系統暫存資料夾/.test(sk.desk) && /唔好存喺項目資料夾/.test(sk.desk) && /刪走/.test(sk.desk) && !/存喺你而家嘅工作資料夾/.test(sk.desk));
 
   /* (2) 喺原型以外嘅位置用插件附帶嘅程式安裝 */

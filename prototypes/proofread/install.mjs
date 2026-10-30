@@ -1,11 +1,11 @@
 // startup-os 安裝命令（MVP 規格 2026-10-29 第 2 節第 1 項；規劃書附錄 B `sos install` 嘅最小版）
 // 用法：node install.mjs <項目根>
 // 將呢個程式資料夾複製去 <項目根>/startup-os/（排除清單見 bundle-rules.mjs），建空 data/，寫 VERSION、START-HERE.md、排程啟動檔。
-// 目標已經有 startup-os/ 就拒絕，一個檔都唔改（結束碼 2）。排程登記另外一步（adapters/scheduler/install-schedule.mjs --register），要創辦人批准。
+// 目標已經有 startup-os/ 就拒絕，一個檔都唔改（結束碼 2）；裝咗嘅版本舊過插件就指去更新命令（update.mjs）。排程登記另外一步（adapters/scheduler/install-schedule.mjs --register），要創辦人批准。
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { programFiles, pluginVersion, INSTALL_SKIP } from './bundle-rules.mjs';
+import { programFiles, pluginVersion, INSTALL_SKIP, compareVersions, writeGenerated } from './bundle-rules.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const say = s => console.log('[startup-os] ' + s);
@@ -17,7 +17,8 @@ if (!isDir) { say('找不到項目資料夾：' + proj); process.exit(1); }
 const target = path.join(proj, 'startup-os');
 if (fs.existsSync(target)) {
   let v = ''; try { v = fs.readFileSync(path.join(target, 'VERSION'), 'utf8').trim(); } catch { }
-  say(`已安裝：${target}${v ? '（版本 ' + v + '）' : ''}。今次沒有改動任何檔案。要登記或移除排程，請在對話輸入「安裝排程」或「移除排程」。`);
+  const nv = pluginVersion(ROOT), older = compareVersions(v, nv) < 0;
+  say(`已安裝：${target}${v ? '（版本 ' + v + '）' : ''}。今次沒有改動任何檔案。${older ? '插件已有新版本 ' + nv + '，要更新程式請在對話輸入 /startup-os:update。' : '要登記或移除排程，請在對話輸入「安裝排程」或「移除排程」。'}`);
   process.exit(2);
 }
 if (path.resolve(ROOT).toLowerCase().startsWith(path.resolve(target).toLowerCase() + path.sep)) { say('不可以裝入程式自己的資料夾'); process.exit(1); }

@@ -37,7 +37,7 @@ export function fnv(str) {
 
 // 伺服器用嚟認返自己（同一個資料夾）；ask.mjs 用嚟搵返開緊嘅伺服器
 export const rootId = root => Buffer.from(String(root).toLowerCase()).toString('base64url').slice(-24);
-export const SERVER_VERSION = 'proofread-chain-0.31';
+export const SERVER_VERSION = 'proofread-chain-0.32';
 // 預設由 4380 開始；SOS_PORT 可以改（測試用，唔會撞到創辦人開緊嘅伺服器）
 export const BASE_PORT = Number(process.env.SOS_PORT) || 4380;
 

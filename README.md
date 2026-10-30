@@ -6,7 +6,17 @@
 
 startup-os 由「陶土 AI 團隊」代表：一位統籌成員，按工作分出六位生意大腦成員（生意體檢、紅藍對打、情景演練、商機掃描、路線推演、客戶推進追蹤）。角色、世界觀與用法的唯一定義處是 [`docs/plan/brand-characters-spec.md`](docs/plan/brand-characters-spec.md)。
 
-## 現時版本：0.31（2026-10-30）
+## 現時版本：0.32（插件 0.5.0，2026-10-30）
+
+新增更新指令 `/startup-os:update`：已安裝的項目可以換成新版程式，而 `startup-os/data/` 入面你的公司資料一個檔都不會改動。
+
+- 先比較已安裝版本與插件版本；已是最新就不改動任何檔案。
+- 寫入前先說明會更新多少個程式檔，你答「好」才進行。
+- 舊程式先備份到 `startup-os/.backup-<舊版本>/`；逐個檔換入並核對；中途失敗會由備份自動還原。
+- AI 工作進行中會拒絕更新；更新期間排程暫停開工。
+- 有問題可以輸入「還原上一個版本」。
+
+## 0.31（2026-10-30）
 
 本版把陶土 AI 團隊放入真正的產品介面：
 
@@ -30,7 +40,7 @@ startup-os 由「陶土 AI 團隊」代表：一位統籌成員，按工作分�
 
 ## 開始
 
-需要 Windows 電腦、已安裝並登入的 Claude Code，以及 Node.js。安裝插件後，在 Claude Code 對話輸入 `/startup-os:install`，之後用 `/startup-os:desk` 打開 Founder Desk。
+需要 Windows 電腦、已安裝並登入的 Claude Code，以及 Node.js。安裝插件後，在 Claude Code 對話輸入 `/startup-os:install`，之後用 `/startup-os:desk` 打開 Founder Desk。有新版時，用 `/startup-os:update` 更新。
 
 ## 不在本倉庫的東西
 
