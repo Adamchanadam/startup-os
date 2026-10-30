@@ -1,0 +1,7 @@
+{
+  "name": "startup-os",
+  "version": "0.4.0",
+  "description": "startup-os：AI 團隊同創辦人一齊經營初創。/startup-os:install 把 startup-os 裝入項目並登記每日排程；/startup-os:desk 打開 Founder Desk（創辦人做決定嘅頁面）；/startup-os:dashboard 打開營運監察台（公司日常運作）。",
+  "author": { "name": "Adam Chan" },
+  "keywords": ["startup-os", "founder-desk", "decision", "human-in-loop", "cantonese"]
+}

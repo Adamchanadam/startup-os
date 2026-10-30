@@ -1,0 +1,1176 @@
+{
+  "schemaVersion": 1,
+  "demo": true,
+  "revision": 42,
+  "updatedAt": "@-4m",
+  "updatedBy": "shell",
+  "intake": {
+    "state": "complete"
+  },
+  "company": {
+    "name": "從田間到餐桌",
+    "initials": "田桌",
+    "oneLiner": "把本地小農的當季蔬菜直送注重來源的中小型餐廳。",
+    "nextExternalAction": {
+      "text": "約農場主丙簽供應協議",
+      "milestoneId": "m1"
+    },
+    "rhythm": {
+      "runCadence": "daily",
+      "runTime": "21:00",
+      "timezone": "Asia/Hong_Kong",
+      "interviewWeekday": 3,
+      "runCapMinutes": 30,
+      "triggeredRunsPerHour": 6,
+      "aiStartsPerDay": 40
+    }
+  },
+  "lines": [
+    {
+      "id": "main",
+      "name": "主線",
+      "kind": "main",
+      "openedAt": "@-26d"
+    }
+  ],
+  "goals": {
+    "quarter": {
+      "text": "季末：三間餐廳連續四週每週下單，同時有三個農場簽約供貨",
+      "endsOn": "@+65d",
+      "evidence": "訂單紀錄及簽署協議"
+    },
+    "month": {
+      "text": "簽第一個農場並查清牌照與保險要求",
+      "endsOn": "@+2d",
+      "evidence": "簽署協議及查詢紀錄",
+      "tentative": {
+        "by": "ai",
+        "until": "@+2d"
+      }
+    },
+    "progressDefinition": "有農場簽署協議；有餐廳廚師試食後表示認可"
+  },
+  "milestones": [
+    {
+      "id": "m1",
+      "title": "三個農場簽供應協議",
+      "short": "農場簽約",
+      "lineId": "main",
+      "order": 1,
+      "event": "三個農場簽供應協議",
+      "actorKind": "供應者",
+      "actorName": "農場甲、乙、丙",
+      "witness": "農場主",
+      "evidence": "簽署協議",
+      "deliveryCondition": "三份已簽的供應協議",
+      "state": "active",
+      "pathStatus": "confirmed",
+      "depth": "ok",
+      "targetDate": "@+5d",
+      "ownerKind": "teammate",
+      "ownerId": "tm-buy",
+      "ownerName": "採購伙伴",
+      "depthAnswers": [
+        "有穩定每週出貨與直接客戶（假設）",
+        "農場主本人決定，一次會面可簽（假設）",
+        "一頁簡介、採購量與付款條款草案",
+        "要求獨家或供應量不穩",
+        "三個農場來自本季目標"
+      ],
+      "watchItems": [
+        {
+          "id": "w-m1-signed",
+          "label": "已簽農場",
+          "kind": "count",
+          "value": 2,
+          "target": 3,
+          "history": [
+            {
+              "at": "@-19d",
+              "value": 1,
+              "grade": "did"
+            },
+            {
+              "at": "@-3d",
+              "value": 2,
+              "grade": "did"
+            }
+          ]
+        },
+        {
+          "id": "w-m1-interest",
+          "label": "有意向農場",
+          "kind": "count",
+          "value": 1,
+          "target": 2,
+          "history": []
+        }
+      ],
+      "startedAt": "@-24d"
+    },
+    {
+      "id": "m6",
+      "title": "農場乙長期供應葉菜",
+      "short": "農場乙供應",
+      "lineId": "main",
+      "order": 2,
+      "event": "農場乙簽一年葉菜供應協議",
+      "actorName": "農場乙",
+      "witness": "農場乙主人",
+      "evidence": "簽署協議",
+      "deliveryCondition": "一年供應協議",
+      "state": "not_started",
+      "pathStatus": "retired",
+      "retiredReason": "農場乙退出，改以兩個農場先試做",
+      "supersededBy": "m1t",
+      "watchItems": []
+    },
+    {
+      "id": "m1t",
+      "title": "先以兩個農場供貨試做兩週",
+      "short": "兩農場試做",
+      "lineId": "main",
+      "branchFrom": "m1",
+      "event": "農場甲、丙連續兩週按時交貨",
+      "actorName": "農場甲、丙",
+      "witness": "創辦人收貨紀錄",
+      "evidence": "兩週收貨紀錄",
+      "deliveryCondition": "兩週準時、缺貨不超過兩成",
+      "state": "active",
+      "pathStatus": "trial",
+      "depth": "ok",
+      "ownerKind": "human",
+      "ownerName": "創辦人",
+      "trial": {
+        "adoptedAt": "@-10d",
+        "startedAt": "@-10d",
+        "until": "@+9d",
+        "pathOptionId": "p0",
+        "successSignal": {
+          "text": "兩個農場連續兩週準時交貨",
+          "value": 1,
+          "target": 2,
+          "met": false
+        },
+        "stopSignal": {
+          "text": "任何一週缺貨超過兩成",
+          "met": false
+        }
+      },
+      "watchItems": [
+        {
+          "id": "w-m1t-weeks",
+          "label": "準時交貨週數",
+          "kind": "count",
+          "value": 1,
+          "target": 2,
+          "history": [
+            {
+              "at": "@-3d",
+              "value": 1,
+              "grade": "did"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "title": "牌照與保險到位",
+      "short": "牌照保險",
+      "lineId": "main",
+      "order": 3,
+      "event": "所需牌照批出、保險生效",
+      "actorKind": "監管",
+      "actorName": "發牌機關、保險公司",
+      "witness": "發牌機關、保險公司",
+      "evidence": "文件編號、保單",
+      "deliveryCondition": "牌照（如適用）及第三者保險生效",
+      "state": "waiting",
+      "pathStatus": "confirmed",
+      "depth": "ok",
+      "targetDate": "@+12d",
+      "targetDateTentative": {
+        "by": "ai",
+        "until": "@+7d"
+      },
+      "ownerKind": "teammate",
+      "ownerId": "tm-comp",
+      "ownerName": "合規助理",
+      "depthAnswers": [
+        "按申請程序批出（須核實）",
+        "由創辦人向主管機關查清",
+        "先查清要求",
+        "要求比預期多、審批比預期長",
+        "必須在首次送菜到餐廳之前到位"
+      ],
+      "waitingOn": "待你決定牌照與保險的查詢次序",
+      "watchItems": [
+        {
+          "id": "w-m4-licence",
+          "label": "牌照",
+          "kind": "text",
+          "value": "未查",
+          "target": "已批出或確認毋須申請",
+          "history": []
+        }
+      ],
+      "startedAt": "@-8d",
+      "parallelConfirmedAt": "@-8d"
+    },
+    {
+      "id": "m2",
+      "title": "五間餐廳完成試單並給回饋",
+      "short": "餐廳試單",
+      "lineId": "main",
+      "order": 4,
+      "event": "五間餐廳各完成一次試單並給回饋",
+      "actorKind": "客戶",
+      "actorName": "中小型餐廳",
+      "witness": "餐廳主廚或老闆",
+      "evidence": "訂單紀錄及回饋原文",
+      "deliveryCondition": "五份試單回饋",
+      "state": "not_started",
+      "pathStatus": "confirmed",
+      "depth": "ok",
+      "targetDate": "@+26d",
+      "ownerKind": "teammate",
+      "ownerId": "tm-rest",
+      "ownerName": "餐廳拓展",
+      "depthAnswers": [
+        "來源可追溯與穩定供應",
+        "月底檢視供應商，廚師先試食",
+        "廚師試食；牌照保險",
+        "試食後不下單、價錢高於現有供應商",
+        "五間試單以求三間續用"
+      ],
+      "dependsOn": [
+        "m1",
+        "m4"
+      ],
+      "watchItems": [
+        {
+          "id": "w-m2-tasted",
+          "label": "完成試食餐廳",
+          "kind": "count",
+          "value": 0,
+          "target": 5,
+          "history": []
+        },
+        {
+          "id": "w-m2-trial",
+          "label": "完成試單餐廳",
+          "kind": "count",
+          "value": 0,
+          "target": 5,
+          "history": []
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "title": "首條每週送貨路線",
+      "short": "首條送貨路線",
+      "lineId": "main",
+      "order": 5,
+      "event": "至少一間餐廳轉為每週固定送貨並開始按週收費",
+      "actorKind": "客戶",
+      "actorName": "試單後續用的餐廳",
+      "witness": "餐廳收貨人",
+      "evidence": "送貨單簽收及首筆週費",
+      "deliveryCondition": "首週送貨完成並收費",
+      "state": "not_started",
+      "pathStatus": "confirmed",
+      "depth": "shallow",
+      "depthGaps": [
+        2
+      ],
+      "ownerKind": "human",
+      "ownerName": "創辦人",
+      "depthAnswers": [
+        "試單後續用的餐廳已同意每週供貨",
+        null,
+        "由創辦人親自送貨，清晨前送達",
+        "清晨時限趕不及",
+        "只有創辦人一人送貨"
+      ],
+      "dependsOn": [
+        "m2"
+      ],
+      "watchItems": []
+    },
+    {
+      "id": "m5",
+      "title": "三間餐廳連續四週每週下單",
+      "short": "連續四週訂單",
+      "lineId": "main",
+      "order": 6,
+      "event": "三間餐廳連續四週每週下單",
+      "actorKind": "客戶",
+      "actorName": "中小型餐廳",
+      "witness": "各餐廳老闆或主廚",
+      "evidence": "四週訂單及收款紀錄",
+      "deliveryCondition": "三間餐廳四週訂單",
+      "state": "not_started",
+      "pathStatus": "confirmed",
+      "depth": "ok",
+      "targetDate": "@+65d",
+      "ownerKind": "teammate",
+      "ownerId": "tm-rest",
+      "ownerName": "餐廳拓展",
+      "depthAnswers": [
+        "品質穩定與來源可追溯",
+        "每週下一至兩次單、月底檢視",
+        "試單通過、每週路線穩定",
+        "供應量不穩、送貨遲到",
+        "三間連續四週等於季末目標"
+      ],
+      "dependsOn": [
+        "m3"
+      ],
+      "watchItems": [
+        {
+          "id": "w-m5-repeat",
+          "label": "連續下單餐廳",
+          "kind": "count",
+          "value": 0,
+          "target": 3,
+          "history": []
+        }
+      ]
+    },
+    {
+      "id": "m7",
+      "title": "先辦一場廚師試食會",
+      "short": "廚師試食會",
+      "lineId": "main",
+      "branchFrom": "m2",
+      "event": "五位餐廳主廚出席試食會並留下回饋",
+      "actorKind": "客戶",
+      "actorName": "餐廳主廚",
+      "witness": "主廚本人",
+      "evidence": "出席名單及回饋表",
+      "state": "not_started",
+      "pathStatus": "proposed",
+      "depth": "ok",
+      "targetDate": "@+16d",
+      "watchItems": []
+    }
+  ],
+  "pathOptions": [
+    {
+      "id": "p1",
+      "lineId": "main",
+      "title": "甲：先辦一場廚師試食會，再請餐廳試單",
+      "branchFromMilestoneId": "m2",
+      "milestoneIds": [
+        "m7"
+      ],
+      "status": "open",
+      "recommended": true,
+      "packId": "ask-demo-route",
+      "card": {
+        "assumptions": "主廚願意一同出席；試食後較易答應試單",
+        "chain": "邀約五位主廚 → 試食會 → 收集回饋 → 三間下試單",
+        "prerequisites": "牌照與保險到位；兩個農場供貨穩定",
+        "earliestDate": "16 日後",
+        "firstSignal": "一星期內有三位主廚答應出席",
+        "failSignal": "兩星期內少於兩位答應",
+        "rollback": "改回逐間上門試食",
+        "impact": "餐廳試單目標由五間改為三間；首條送貨路線延後一星期"
+      },
+      "impact": [
+        {
+          "milestoneId": "m2",
+          "change": "retarget",
+          "detail": "餐廳試單：完成試單餐廳 5 → 3"
+        },
+        {
+          "milestoneId": "m7",
+          "change": "add",
+          "detail": "新增：廚師試食會"
+        },
+        {
+          "milestoneId": "m3",
+          "change": "delay",
+          "detail": "首條送貨路線延後一星期"
+        },
+        {
+          "milestoneId": "m5",
+          "change": "keep",
+          "detail": "連續四週訂單不變"
+        }
+      ]
+    }
+  ],
+  "currentCard": {
+    "assumptions": "餐廳逐間試食後會答應試單",
+    "chain": "逐間邀約主廚 → 上門試食 → 五間試單",
+    "prerequisites": "牌照與保險到位",
+    "earliestDate": "26 日後",
+    "firstSignal": "兩星期內有兩間答應試食",
+    "failSignal": "一個月內少於三間試食",
+    "rollback": "—",
+    "impact": "—"
+  },
+  "teammates": [
+    {
+      "id": "tm-buy",
+      "name": "採購伙伴",
+      "mission": "替創辦人準備農場洽談所需的資料，令每次會面都可以即場簽約",
+      "milestoneIds": [
+        "m1",
+        "m1t"
+      ],
+      "lifecycle": "enabled",
+      "how": [
+        "整理農場資料及供應量",
+        "準備簡介與條款草案",
+        "記錄每次洽談結果"
+      ],
+      "bounds": {
+        "tellAfter": [
+          "整理農場名單"
+        ],
+        "askFirst": [
+          "對外發訊息",
+          "答應任何價錢"
+        ]
+      }
+    },
+    {
+      "id": "tm-comp",
+      "name": "合規助理",
+      "mission": "查清牌照與保險要求，避免送菜前出現問題",
+      "milestoneIds": [
+        "m4"
+      ],
+      "lifecycle": "enabled",
+      "how": [
+        "整理查詢清單",
+        "比較保險報價",
+        "提醒申請期限"
+      ],
+      "bounds": {
+        "tellAfter": [
+          "整理報價"
+        ],
+        "askFirst": [
+          "遞交任何申請",
+          "購買保險"
+        ]
+      }
+    },
+    {
+      "id": "tm-rest",
+      "name": "餐廳拓展",
+      "mission": "找到願意試食與試單的餐廳",
+      "milestoneIds": [
+        "m2",
+        "m3",
+        "m5"
+      ],
+      "lifecycle": "planned",
+      "activationTaskId": "t7",
+      "how": [
+        "整理餐廳名單",
+        "準備試食會流程",
+        "跟進回饋"
+      ],
+      "bounds": {
+        "tellAfter": [],
+        "askFirst": [
+          "聯絡任何餐廳"
+        ]
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "cap1",
+      "title": "餐廳回饋整理表",
+      "kind": "tool",
+      "serves": {
+        "milestoneId": "m2"
+      },
+      "proofMethod": "第一間試單餐廳的回饋用此表記錄",
+      "status": "active",
+      "proofTaskId": "t10"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "f2",
+      "title": "致電發牌機關查詢牌照要求",
+      "owner": "founder",
+      "milestoneId": "m4",
+      "status": "planned",
+      "dueAt": "@+1d 10:00",
+      "next": "按牌照要求查詢清單逐項查詢",
+      "updatedAt": "@-2d"
+    },
+    {
+      "id": "t5",
+      "title": "牌照要求查詢清單",
+      "milestoneId": "m4",
+      "teammateId": "tm-comp",
+      "status": "active",
+      "next": "列出食物業相關牌照及所需文件",
+      "updatedAt": "@-2d",
+      "prepFor": "f2",
+      "longWait": {
+        "who": "發牌機關",
+        "weeks": 3
+      }
+    },
+    {
+      "id": "t13",
+      "title": "保險公司索取報價信草稿",
+      "milestoneId": "m4",
+      "teammateId": "tm-comp",
+      "status": "planned",
+      "longWait": {
+        "who": "保險公司",
+        "weeks": 2
+      },
+      "waitFor": {
+        "kind": "action",
+        "id": "f2"
+      },
+      "updatedAt": "@-1d"
+    },
+    {
+      "id": "f1",
+      "title": "見農場丙簽供應協議",
+      "owner": "founder",
+      "milestoneId": "m1",
+      "status": "planned",
+      "dueAt": "@+4d 15:00",
+      "waitFor": {
+        "kind": "task",
+        "id": "t3"
+      },
+      "next": "帶同簡介及協議草稿往農場丙",
+      "updatedAt": "@-1d",
+      "scenarioId": "farm-c"
+    },
+    {
+      "id": "t3",
+      "title": "農場丙簽約前資料包",
+      "milestoneId": "m1",
+      "teammateId": "tm-buy",
+      "status": "active",
+      "next": "整理農場丙的供應量及月結條件",
+      "updatedAt": "@-4m",
+      "prepFor": "f1"
+    },
+    {
+      "id": "t11",
+      "title": "見農場丙問題清單",
+      "milestoneId": "m1",
+      "teammateId": "tm-buy",
+      "status": "planned",
+      "prepFor": "f1",
+      "updatedAt": "@-1d"
+    },
+    {
+      "id": "t4",
+      "title": "農場乙替代人選名單",
+      "milestoneId": "m1",
+      "teammateId": "tm-buy",
+      "status": "blocked",
+      "updatedAt": "@-2d",
+      "waitFor": {
+        "kind": "external",
+        "who": "農場丙",
+        "text": "可否增加供應量",
+        "eta": "@+3d"
+      }
+    },
+    {
+      "id": "t6",
+      "title": "保險報價比較",
+      "milestoneId": "m4",
+      "teammateId": "tm-comp",
+      "status": "waiting",
+      "packId": "ask-demo-licence",
+      "updatedAt": "@-9d",
+      "waitFor": {
+        "kind": "decision",
+        "packId": "ask-demo-licence"
+      }
+    },
+    {
+      "id": "t7",
+      "title": "餐廳試食會流程清單（啟用任務）",
+      "milestoneId": "m2",
+      "teammateId": "tm-rest",
+      "status": "planned",
+      "updatedAt": "@-5d",
+      "riskTest": "餐廳願意為可追溯來源付較高價錢"
+    },
+    {
+      "id": "t12",
+      "title": "試單價錢比較表",
+      "milestoneId": "m2",
+      "teammateId": "tm-rest",
+      "status": "planned",
+      "riskTest": "餐廳願意為可追溯來源付較高價錢",
+      "updatedAt": "@-2d"
+    },
+    {
+      "id": "t8",
+      "title": "首條送貨路線時間表草稿",
+      "milestoneId": "m3",
+      "status": "planned",
+      "updatedAt": "@-5d",
+      "waitFor": {
+        "kind": "task",
+        "id": "t7"
+      }
+    },
+    {
+      "id": "f4",
+      "title": "送試食菜去餐廳甲",
+      "owner": "founder",
+      "milestoneId": "m2",
+      "status": "planned",
+      "dueAt": "@+18d 11:00",
+      "waitFor": {
+        "kind": "task",
+        "id": "t7"
+      },
+      "updatedAt": "@-2d"
+    },
+    {
+      "id": "f3",
+      "title": "點收農場甲第二週貨",
+      "owner": "founder",
+      "milestoneId": "m1t",
+      "status": "done",
+      "dueAt": "@-1d 07:00",
+      "packId": "ask-demo-confirm-f3",
+      "updatedAt": "@-1d"
+    },
+    {
+      "id": "t2",
+      "title": "農場合作一頁簡介",
+      "milestoneId": "m1",
+      "teammateId": "tm-buy",
+      "status": "done",
+      "needsAcceptance": true,
+      "packId": "ask-demo-accept",
+      "updatedAt": "@-20m",
+      "artifactTitle": "農場合作一頁簡介"
+    },
+    {
+      "id": "t1",
+      "title": "農場甲供應協議草稿",
+      "milestoneId": "m1",
+      "teammateId": "tm-buy",
+      "status": "done",
+      "needsAcceptance": true,
+      "acceptedBy": "founder",
+      "updatedAt": "@-18d"
+    },
+    {
+      "id": "t9",
+      "title": "餐廳名單（二十間）",
+      "milestoneId": "m2",
+      "teammateId": "tm-buy",
+      "status": "done",
+      "needsAcceptance": true,
+      "acceptedBy": "founder",
+      "updatedAt": "@-14d"
+    },
+    {
+      "id": "t10",
+      "title": "餐廳回饋整理表",
+      "capabilityId": "cap1",
+      "teammateId": "tm-rest",
+      "status": "active",
+      "updatedAt": "@-1d"
+    },
+    {
+      "id": "a1",
+      "title": "聖誕節餐廳推廣單張",
+      "adhoc": true,
+      "status": "waiting",
+      "packId": "ask-demo-adhoc",
+      "updatedAt": "@-30m",
+      "waitFor": {
+        "kind": "decision",
+        "packId": "ask-demo-adhoc"
+      }
+    },
+    {
+      "id": "a2",
+      "title": "比較兩款送貨保溫箱",
+      "adhoc": true,
+      "status": "active",
+      "updatedAt": "@-1d"
+    },
+    {
+      "id": "a3",
+      "title": "整理十月單據",
+      "adhoc": true,
+      "status": "done",
+      "needsAcceptance": true,
+      "acceptedBy": "founder",
+      "updatedAt": "@-4d"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d-licence",
+      "title": "牌照與保險的查詢次序",
+      "kind": "other",
+      "blocking": true,
+      "status": "pending",
+      "packId": "ask-demo-licence",
+      "askedAt": "@-9d 10:00",
+      "milestoneId": "m4",
+      "todoType": "blocking"
+    },
+    {
+      "id": "d-accept",
+      "title": "驗收：農場合作一頁簡介",
+      "kind": "other",
+      "status": "pending",
+      "packId": "ask-demo-accept",
+      "askedAt": "@-20m",
+      "milestoneId": "m1",
+      "todoType": "acceptance"
+    },
+    {
+      "id": "d-route",
+      "title": "是否採用路線甲：先辦廚師試食會",
+      "kind": "path",
+      "status": "pending",
+      "packId": "ask-demo-route",
+      "askedAt": "@-2d 21:20",
+      "milestoneId": "m2",
+      "todoType": "path"
+    },
+    {
+      "id": "d-monthly",
+      "title": "農場丙要求月結，是否接受",
+      "kind": "other",
+      "status": "pending",
+      "packId": "ask-demo-inbox",
+      "askedAt": "@-1d 10:30",
+      "milestoneId": "m1",
+      "todoType": "inbox"
+    },
+    {
+      "id": "d-adhoc",
+      "title": "臨時工作：聖誕節餐廳推廣單張",
+      "kind": "other",
+      "status": "pending",
+      "packId": "ask-demo-adhoc",
+      "askedAt": "@-30m",
+      "todoType": "question"
+    },
+    {
+      "id": "d-f3",
+      "title": "確認：點收農場甲第二週貨",
+      "kind": "confirm",
+      "status": "pending",
+      "packId": "ask-demo-confirm-f3",
+      "askedAt": "@-1d 08:00",
+      "milestoneId": "m1t",
+      "todoType": "action"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "in1",
+      "kind": "inbox",
+      "title": "保險公司報價單（甲公司）",
+      "status": "unprocessed",
+      "receivedAt": "@-1d 18:20"
+    },
+    {
+      "id": "in2",
+      "kind": "inbox",
+      "title": "與農場丙的通話紀錄",
+      "status": "awaitingFounder",
+      "awaitingFounderText": "農場丙要求月結，接受嗎？",
+      "packId": "ask-demo-inbox",
+      "receivedAt": "@-1d 10:05"
+    },
+    {
+      "id": "in3",
+      "kind": "inbox",
+      "title": "與農場甲會面紀錄",
+      "status": "processed",
+      "receivedAt": "@-19d",
+      "effects": [
+        {
+          "change": "已簽農場 0 → 1"
+        },
+        {
+          "change": "決定：不接受獨家"
+        }
+      ]
+    },
+    {
+      "id": "in4",
+      "kind": "reply",
+      "title": "每週訪問答案",
+      "status": "processed",
+      "receivedAt": "@wed-7",
+      "effects": [
+        {
+          "change": "送貨改為每週兩次"
+        },
+        {
+          "change": "下一個對外行動：約見農場丙"
+        }
+      ]
+    },
+    {
+      "id": "in5",
+      "kind": "inbox",
+      "title": "餐廳名單（創辦人整理）",
+      "status": "processed",
+      "receivedAt": "@-14d",
+      "effects": [
+        {
+          "change": "餐廳試單：候選二十間"
+        }
+      ]
+    }
+  ],
+  "interviews": {
+    "nextOn": "@wed",
+    "lastOn": "@wed-7",
+    "lastSummary": [
+      "農場甲已簽，不設獨家",
+      "送貨改為每週兩次",
+      "餐廳要求清晨六點前送達"
+    ],
+    "changed": "已簽農場 0 → 1；下一個對外行動改為約見農場丙"
+  },
+  "artifacts": [
+    {
+      "title": "農場合作一頁簡介",
+      "runId": "R-demo-a",
+      "at": "@-20m",
+      "milestoneId": "m1"
+    },
+    {
+      "title": "牌照要求查詢清單（初稿）",
+      "runId": "R-demo-c",
+      "at": "@-2d 21:24",
+      "milestoneId": "m4"
+    },
+    {
+      "title": "農場甲供應協議草稿",
+      "runId": "R-demo-b",
+      "at": "@-18d",
+      "milestoneId": "m1"
+    }
+  ],
+  "runs": [
+    {
+      "id": "R-demo-run",
+      "type": "rhythm",
+      "trigger": "schedule",
+      "startedAt": "@-4m",
+      "state": "running",
+      "label": "準備農場丙簽約前資料包",
+      "taskIds": [
+        "t3"
+      ],
+      "moduleIds": [
+        "now",
+        "ai-week"
+      ],
+      "aiStarted": true
+    },
+    {
+      "id": "R-demo-a",
+      "type": "on-demand",
+      "trigger": "manual",
+      "startedAt": "@-35m",
+      "endedAt": "@-20m",
+      "state": "ended",
+      "ending": "artifact",
+      "label": "擬好農場合作一頁簡介",
+      "summary": "按農場甲會面紀錄擬好一頁簡介，待你驗收。",
+      "artifacts": 1,
+      "aiStarted": true,
+      "moduleIds": [
+        "ai-week",
+        "artifacts"
+      ]
+    },
+    {
+      "id": "R-demo-d",
+      "type": "rhythm",
+      "trigger": "schedule",
+      "startedAt": "@-1d 21:00",
+      "endedAt": "@-1d 21:02",
+      "state": "skipped",
+      "skipReason": "appliedOnly",
+      "label": "按排定時間開始（只記錄了你的回覆）",
+      "summary": "已記錄與農場丙的通話；須先由你回答月結問題。",
+      "artifacts": 0,
+      "aiStarted": false
+    },
+    {
+      "id": "R-demo-c",
+      "type": "rhythm",
+      "trigger": "schedule",
+      "startedAt": "@-2d 21:00",
+      "endedAt": "@-2d 21:24",
+      "state": "ended",
+      "ending": "advanced",
+      "label": "整理牌照要求查詢清單",
+      "summary": "列出三類可能需要的牌照及查詢方法；建議先查牌照再買保險。",
+      "artifacts": 1,
+      "aiStarted": true
+    },
+    {
+      "id": "R-demo-b",
+      "type": "rhythm",
+      "trigger": "schedule",
+      "startedAt": "@-18d 21:00",
+      "endedAt": "@-18d 21:19",
+      "state": "ended",
+      "ending": "artifact",
+      "label": "擬好農場甲供應協議草稿",
+      "summary": "按會面紀錄擬好協議草稿，已由你接受。",
+      "artifacts": 1,
+      "aiStarted": true
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "at": "@-26d",
+      "actor": "founder",
+      "type": "input",
+      "title": "提交資料：商業模式及現況",
+      "relatedIds": [],
+      "moduleIds": [
+        "inputs"
+      ]
+    },
+    {
+      "id": "e2",
+      "at": "@-25d",
+      "actor": "founder",
+      "type": "decision",
+      "title": "確認公司概覽及路線次序",
+      "relatedIds": [],
+      "moduleIds": [
+        "decisions",
+        "now"
+      ]
+    },
+    {
+      "id": "e3",
+      "at": "@-19d",
+      "actor": "founder",
+      "type": "milestone",
+      "title": "農場甲已簽（不設獨家）",
+      "relatedIds": [
+        "m1"
+      ],
+      "moduleIds": [
+        "evidence",
+        "now"
+      ]
+    },
+    {
+      "id": "e4",
+      "at": "@-18d",
+      "actor": "founder",
+      "type": "decision",
+      "title": "接受：農場甲供應協議草稿",
+      "relatedIds": [
+        "t1"
+      ],
+      "moduleIds": [
+        "decisions",
+        "ai-week"
+      ]
+    },
+    {
+      "id": "e5",
+      "at": "@-12d",
+      "actor": "founder",
+      "type": "signal",
+      "title": "農場乙退出",
+      "relatedIds": [
+        "m6"
+      ],
+      "moduleIds": [
+        "paths",
+        "inputs"
+      ]
+    },
+    {
+      "id": "e6",
+      "at": "@-10d",
+      "actor": "founder",
+      "type": "path",
+      "title": "採用路線：先以兩個農場試做",
+      "relatedIds": [
+        "m1t",
+        "m6"
+      ],
+      "moduleIds": [
+        "paths",
+        "now"
+      ]
+    },
+    {
+      "id": "e7",
+      "at": "@-10d",
+      "actor": "shell",
+      "type": "path",
+      "title": "撤回：農場乙長期供應葉菜",
+      "relatedIds": [
+        "m6"
+      ],
+      "moduleIds": [
+        "paths"
+      ]
+    },
+    {
+      "id": "e8",
+      "at": "@wed-7",
+      "actor": "founder",
+      "type": "input",
+      "title": "完成每週訪問",
+      "relatedIds": [],
+      "moduleIds": [
+        "inputs"
+      ]
+    },
+    {
+      "id": "e9",
+      "at": "@-3d",
+      "actor": "founder",
+      "type": "milestone",
+      "title": "農場丙已簽：已簽農場 1 → 2",
+      "relatedIds": [
+        "m1"
+      ],
+      "moduleIds": [
+        "evidence",
+        "now"
+      ]
+    },
+    {
+      "id": "e10",
+      "at": "@-2d 21:24",
+      "actor": "ai",
+      "type": "path",
+      "title": "AI 建議新路線：先辦廚師試食會",
+      "relatedIds": [
+        "p1",
+        "m7"
+      ],
+      "moduleIds": [
+        "paths"
+      ]
+    },
+    {
+      "id": "e11",
+      "at": "@-2d 21:24",
+      "actor": "ai",
+      "type": "run",
+      "title": "AI 完成工作：整理牌照要求查詢清單",
+      "relatedIds": [
+        "R-demo-c"
+      ],
+      "moduleIds": [
+        "ai-week",
+        "artifacts"
+      ]
+    },
+    {
+      "id": "e12",
+      "at": "@-1d 18:20",
+      "actor": "founder",
+      "type": "input",
+      "title": "收到保險公司報價單",
+      "relatedIds": [
+        "in1"
+      ],
+      "moduleIds": [
+        "inputs"
+      ]
+    },
+    {
+      "id": "e13",
+      "at": "@-30m",
+      "actor": "founder",
+      "type": "input",
+      "title": "提交一件臨時工作：聖誕節餐廳推廣單張",
+      "relatedIds": [
+        "a1"
+      ],
+      "moduleIds": [
+        "inputs",
+        "decisions"
+      ]
+    },
+    {
+      "id": "e14",
+      "at": "@-20m",
+      "actor": "ai",
+      "type": "run",
+      "title": "AI 完成工作：農場合作一頁簡介，待你驗收",
+      "relatedIds": [
+        "R-demo-a",
+        "t2"
+      ],
+      "moduleIds": [
+        "ai-week",
+        "artifacts"
+      ]
+    },
+    {
+      "id": "e15",
+      "at": "@-4m",
+      "actor": "ai",
+      "type": "run",
+      "title": "AI 開始工作：準備農場丙簽約前資料包",
+      "relatedIds": [
+        "R-demo-run",
+        "t3"
+      ],
+      "moduleIds": [
+        "now",
+        "ai-week"
+      ]
+    },
+    {
+      "id": "e16",
+      "at": "@-8d",
+      "actor": "founder",
+      "type": "path",
+      "title": "確認牌照保險與農場簽約同步進行",
+      "relatedIds": [
+        "m4"
+      ],
+      "moduleIds": [
+        "paths",
+        "now"
+      ]
+    }
+  ],
+  "health": {
+    "autoStopped": false,
+    "noProgressStreak": 0,
+    "lastValidatedAt": "@-4m",
+    "warnings": [
+      "短期目標為 AI 暫定值，兩日後到期時會再徵詢你"
+    ]
+  }
+}

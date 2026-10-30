@@ -1,0 +1,35 @@
+# startup-os
+
+給已在用 Claude Code 的創辦人與小團隊：一隊在你電腦上運行的 AI 團隊，先替你準備資料、草稿和練習；見客、收款、簽約仍由你決定和去做。
+
+startup-os 由「陶土 AI 團隊」代表：一位統籌成員，按工作分出六位生意大腦成員（生意體檢、紅藍對打、情景演練、商機掃描、路線推演、客戶推進追蹤）。角色、世界觀與用法的唯一定義處是 [`docs/plan/brand-characters-spec.md`](docs/plan/brand-characters-spec.md)。
+
+## 現時版本：0.31（2026-10-30）
+
+本版把陶土 AI 團隊放入真正的產品介面：
+
+- **Founder Desk**：「今日要做的事」卡與「沒有待決事項」以暗淡的陶土場景作背景；AI 自動停時，問題包右邊是坐在枱邊等你的統籌成員。
+- **營運監察台・運作環**：創辦人決定核心是門口（有待你決定的事時，門前放着文件與未寄出的信）；AI 統籌核心坐落在工作枱上，統籌成員按真實狀態工作、敬禮等你指示、企定待命或坐低等；每個真正運行中的 AI 工作是一位細成員，做生意大腦工作時戴上該項的胸章和道具。
+- **動作只跟真實工作**：細成員與統籌成員只在真 AI 工作時才以定格動畫方式輕輕郁動；閒置時統籌成員偶然縮一縮身。暫停動效或系統減少動態時全部靜止。
+- **生意大腦**：六個分頁頁頭各有自己的成員；未有資料時顯示六位成員排列圖。
+- **手機**：運作環清單每行有陶土小頭像。
+- **三級慶祝**：里程碑完成時，橫幅旁的台階插上新旗。
+- 標題字與小標題字放大，閱讀層次更清楚。
+
+## 目錄
+
+| 位置 | 內容 |
+|---|---|
+| `prototypes/proofread/` | 程式本體（零依賴 Node.js）：本機伺服器、Founder Desk、營運監察台、AI 外殼 |
+| `prototypes/proofread/adapters/claude-code/startup-os/` | Claude Code 插件（`/startup-os:install`、`/startup-os:desk`、`/startup-os:dashboard`），`program/` 由 `build-plugin.mjs` 生成 |
+| `tests/prototype/` | 全套測試（隔離資料夾、假 AI、零費用）：`node tests/prototype/run-all.mjs` |
+| `docs/` | 創辦人簡報、規劃書、設計規格、品牌角色與圖像 |
+| `site/` | 介紹頁 |
+
+## 開始
+
+需要 Windows 電腦、已安裝並登入的 Claude Code，以及 Node.js。安裝插件後，在 Claude Code 對話輸入 `/startup-os:install`，之後用 `/startup-os:desk` 打開 Founder Desk。
+
+## 不在本倉庫的東西
+
+真實公司資料、示範資料、其他公司的模擬與試驗紀錄、舊版本備份、設計稿與截圖原檔都只留在本機（見 `.gitignore`）。

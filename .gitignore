@@ -1,0 +1,27 @@
+# startup-os 倉庫：只放程式、測試、文件、介紹頁
+# 真實資料、示範資料、其他公司嘅模擬與試驗（唔外傳）
+prototypes/proofread/data/
+prototypes/proofread/data-*/
+prototypes/proofread/demo-data/
+prototypes/value-trial-*/
+sim/
+# 舊版本備份（體積大，喺本機）
+backups/
+# 設計稿與截圖原檔（體積大，喺本機）
+prototypes/proofread/mockups/
+prototypes/proofread/screenshots/
+# 舊版規劃書與測試紀錄（內有其他公司試驗內容）
+docs/plan/archive/
+docs/evidence/
+# 其他
+.probe
+node_modules/
+*.log
+# 含其他公司試驗紀錄嘅文件（只留本機）
+docs/HANDOFF.md
+docs/brief/FOUNDER-BRIEF.md
+docs/brief/FOUNDER-METHOD-closed-loop-2026-10-27.md
+docs/plan/DESIGN-product-completion-2026-10-28.md
+docs/plan/PLAN-clay-team-ui-next-2026-10-30.md
+docs/plan/startup-os-PLAN.md
+prototypes/proofread/PROTOTYPE-HANDOFF.md

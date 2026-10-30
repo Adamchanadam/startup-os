@@ -1,0 +1,226 @@
+{
+ "format": "startup-os.ask/0.1",
+ "title": "開放日推廣：待決事項",
+ "context": "AI 正在準備開放日季節的推廣計劃，有幾項事情需要你決定。",
+ "afterConfirm": "AI 會按你的答案撰寫推廣時間表及第一批草稿（不會發送）",
+ "next": {
+  "task": "按創辦人答案撰寫一頁推廣時間表草稿"
+ },
+ "questions": [
+  {
+   "id": "target",
+   "priority": 1,
+   "ask": "先推廣哪類餐廳？",
+   "options": [
+    {
+     "text": "準備開放日的小學",
+     "rec": true
+    },
+    {
+     "text": "準備招生的中學"
+    }
+   ],
+   "value": "準備開放日的小學",
+   "why": "開放日前最需要說明餐廳特色。"
+  },
+  {
+   "id": "budget",
+   "priority": 2,
+   "ask": "今季推廣可用多少預算？",
+   "effect": "now",
+   "options": [
+    {
+     "text": "不花費，只用現有人脈",
+     "rec": true
+    },
+    {
+     "text": "五千元以內"
+    }
+   ],
+   "value": "不花費，只用現有人脈",
+   "why": "未有付費客戶前暫不花費。"
+  },
+  {
+   "id": "start",
+   "priority": 3,
+   "ask": "何時開始推廣？",
+   "kind": "date",
+   "value": "2026-11-16",
+   "why": "伙伴答覆之後才推廣。"
+  },
+  {
+   "id": "channels",
+   "priority": 4,
+   "ask": "使用哪幾個渠道？",
+   "kind": "multi",
+   "options": [
+    {
+     "text": "直接約見主廚"
+    },
+    {
+     "text": "伙伴介紹"
+    },
+    {
+     "text": "教育界活動"
+    }
+   ],
+   "value": [
+    "直接約見主廚",
+    "伙伴介紹"
+   ],
+   "why": "第一批依靠人脈最快。"
+  },
+  {
+   "id": "sample-count",
+   "priority": 5,
+   "ask": "本季為多少間餐廳提供免費診斷？",
+   "options": [
+    {
+     "text": "3 間",
+     "rec": true
+    },
+    {
+     "text": "5 間"
+    }
+   ],
+   "value": "3 間",
+   "why": "每間約需 8 小時，3 間可以按時完成。"
+  },
+  {
+   "id": "who-pitch",
+   "priority": 6,
+   "ask": "由誰負責約見主廚？",
+   "options": [
+    {
+     "text": "我自己",
+     "rec": true
+    },
+    {
+     "text": "陳顧問"
+    }
+   ],
+   "value": "我自己",
+   "why": "早期由創辦人親自商談最好。"
+  },
+  {
+   "id": "case-name",
+   "priority": 7,
+   "ask": "示例餐廳可否具名？",
+   "options": [
+    {
+     "text": "不具名",
+     "rec": true
+    },
+    {
+     "text": "先徵得餐廳同意再具名"
+    }
+   ],
+   "value": "不具名",
+   "why": "未得校方同意前不具名。"
+  },
+  {
+   "id": "tone",
+   "priority": 8,
+   "ask": "推廣語氣偏向哪種？",
+   "options": [
+    {
+     "text": "專業、平實",
+     "rec": true
+    },
+    {
+     "text": "親切、輕鬆"
+    }
+   ],
+   "value": "專業、平實",
+   "why": "對象是主廚及管理層。"
+  },
+  {
+   "id": "price-show",
+   "priority": 9,
+   "ask": "推廣材料是否列出價錢？",
+   "options": [
+    {
+     "text": "不列出，見面時才說明",
+     "rec": true
+    },
+    {
+     "text": "列出首年三萬元"
+    }
+   ],
+   "value": "不列出，見面時才說明",
+   "why": "先說明價值，再談價錢。"
+  },
+  {
+   "id": "follow-days",
+   "priority": 10,
+   "ask": "餐廳查看診斷後多久跟進一次？",
+   "options": [
+    {
+     "text": "一星期",
+     "rec": true
+    },
+    {
+     "text": "兩星期"
+    }
+   ],
+   "value": "一星期",
+   "why": "趁主廚仍有印象時跟進。"
+  },
+  {
+   "id": "lang",
+   "priority": 11,
+   "ask": "材料使用哪種語言？",
+   "options": [
+    {
+     "text": "中文",
+     "rec": true
+    },
+    {
+     "text": "中英對照"
+    }
+   ],
+   "value": "中文",
+   "why": "目標餐廳以中文溝通為主。"
+  },
+  {
+   "id": "deck",
+   "priority": 12,
+   "ask": "以哪份簡報作為基礎？",
+   "options": [
+    {
+     "text": "伙伴合作建議簡報",
+     "rec": true
+    },
+    {
+     "text": "重新製作餐廳版"
+    }
+   ],
+   "value": "伙伴合作建議簡報",
+   "why": "已有內容，可刪減後使用。"
+  },
+  {
+   "id": "review",
+   "priority": 13,
+   "ask": "推廣材料須經誰審閱才發出？",
+   "options": [
+    {
+     "text": "我審閱即可",
+     "rec": true
+    },
+    {
+     "text": "我與陳顧問均須審閱"
+    }
+   ],
+   "value": "我審閱即可",
+   "why": "初稿階段毋須太多人審閱。"
+  },
+  {
+   "id": "measure",
+   "priority": 14,
+   "ask": "怎樣才算推廣有效？",
+   "kind": "text",
+   "value": "兩個月內有 3 位主廚願意查看診斷",
+   "why": "以可見的真實行動為準，不計瀏覽量。"
+  }
+ ]
+}

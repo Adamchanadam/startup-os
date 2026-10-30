@@ -1,0 +1,214 @@
+[
+  {
+    "format": "startup-os.ask/0.1",
+    "id": "ask-demo-licence",
+    "title": "牌照與保險的查詢次序",
+    "context": "合規助理須先知道查詢次序，才可以繼續比較保險報價。",
+    "afterConfirm": "AI 會按你選擇的次序整理查詢清單及報價比較。",
+    "askedBy": "AI",
+    "askedAt": "@-9d 10:00",
+    "fromRun": null,
+    "todoType": "blocking",
+    "milestoneId": "m4",
+    "questions": [
+      {
+        "id": "order",
+        "priority": 1,
+        "ask": "牌照與保險，應先查哪一項？",
+        "judge": "送菜到餐廳之前兩項均須到位；應先查要求較多、所需時間較長的一項。",
+        "kind": "choice",
+        "effect": "now",
+        "options": [
+          {
+            "text": "先查牌照要求",
+            "rec": true
+          },
+          {
+            "text": "先買第三者保險"
+          },
+          {
+            "text": "兩項同時查詢"
+          }
+        ],
+        "value": "先查牌照要求",
+        "why": "牌照要求會影響保險的承保範圍；查清後才購買保險，可免重複投保。"
+      }
+    ]
+  },
+  {
+    "format": "startup-os.ask/0.1",
+    "id": "ask-demo-accept",
+    "title": "驗收：農場合作一頁簡介",
+    "context": "AI 已按農場甲會面紀錄擬好一頁簡介，供與農場丙會面時使用。",
+    "afterConfirm": "接受後即可用於與農場丙會面；如退回，AI 會按你的原因再修改。",
+    "askedBy": "AI",
+    "askedAt": "@-20m",
+    "fromRun": "R-demo-a",
+    "todoType": "acceptance",
+    "milestoneId": "m1",
+    "questions": [
+      {
+        "id": "accept",
+        "priority": 1,
+        "ask": "一頁簡介可以用嗎？",
+        "judge": "與農場丙會面時，對方閱後能清楚每週所需貨量及收款時間即可。",
+        "kind": "choice",
+        "effect": "now",
+        "options": [
+          {
+            "text": "接受",
+            "rec": true
+          },
+          {
+            "text": "退回，需要修改"
+          }
+        ],
+        "value": "接受",
+        "why": "已寫明每週採購量、付款期及送貨安排，與農場甲已簽的條款一致。"
+      }
+    ]
+  },
+  {
+    "format": "startup-os.ask/0.1",
+    "id": "ask-demo-route",
+    "title": "是否採用路線甲：先辦廚師試食會",
+    "context": "AI 建議先辦一場試食會，一次見五位主廚，代替逐間上門試食。",
+    "afterConfirm": "採用後 AI 會把試食會加入路線並開始準備邀請名單。",
+    "askedBy": "AI",
+    "askedAt": "@-2d 21:20",
+    "fromRun": "R-demo-c",
+    "todoType": "path",
+    "milestoneId": "m2",
+    "questions": [
+      {
+        "id": "route",
+        "priority": 1,
+        "ask": "是否採用「先辦廚師試食會」？",
+        "judge": "一星期內有三位主廚答應出席，便值得進行。",
+        "kind": "choice",
+        "effect": "now",
+        "options": [
+          {
+            "text": "採用路線甲",
+            "rec": true
+          },
+          {
+            "text": "維持逐間上門試食"
+          },
+          {
+            "text": "暫時不決定"
+          }
+        ],
+        "value": "採用路線甲",
+        "why": "一次與五位主廚會面，可提早十日知道哪幾間願意試單。"
+      }
+    ]
+  },
+  {
+    "format": "startup-os.ask/0.1",
+    "id": "ask-demo-inbox",
+    "title": "農場丙的月結要求",
+    "context": "你放入的通話紀錄寫明農場丙要求月結。",
+    "afterConfirm": "AI 會把你的答案寫入農場丙簽約前資料包。",
+    "askedBy": "AI",
+    "askedAt": "@-1d 10:30",
+    "fromRun": "R-demo-d",
+    "todoType": "inbox",
+    "milestoneId": "m1",
+    "questions": [
+      {
+        "id": "monthly",
+        "priority": 1,
+        "ask": "農場丙要求月結，接受嗎？",
+        "kind": "choice",
+        "options": [
+          {
+            "text": "接受月結",
+            "rec": true
+          },
+          {
+            "text": "要求每兩週結一次"
+          },
+          {
+            "text": "會面時再商討"
+          }
+        ],
+        "value": "接受月結",
+        "why": "農場甲亦採用月結；現金流足以應付首兩個月。"
+      }
+    ]
+  },
+  {
+    "format": "startup-os.ask/0.1",
+    "id": "ask-demo-adhoc",
+    "title": "臨時工作：聖誕節餐廳推廣單張",
+    "context": "你剛交來一件臨時工作；AI 已擬好範圍，待你確認後才開始。",
+    "afterConfirm": "確認後 AI 會擬好單張文字，完成後交你驗收。",
+    "askedBy": "AI",
+    "askedAt": "@-30m",
+    "fromRun": null,
+    "todoType": "question",
+    "questions": [
+      {
+        "id": "deliver",
+        "priority": 1,
+        "ask": "單張需要交付甚麼？",
+        "kind": "choice",
+        "options": [
+          {
+            "text": "一頁文字稿（中英對照）",
+            "rec": true
+          },
+          {
+            "text": "只要中文文字稿"
+          }
+        ],
+        "value": "一頁文字稿（中英對照）",
+        "why": "目標餐廳有外籍主廚，中英對照較易傳閱。"
+      },
+      {
+        "id": "due",
+        "priority": 2,
+        "ask": "何時需要？",
+        "kind": "date",
+        "value": "@+6d",
+        "why": "聖誕節前三星期派發，餐廳才有時間安排菜單。"
+      }
+    ]
+  },
+  {
+    "format": "startup-os.ask/0.1",
+    "id": "ask-demo-confirm-f3",
+    "title": "確認：點收農場甲第二週貨",
+    "context": "這是你本人的行動；AI 只可以準備，完成與否須由你確認。",
+    "afterConfirm": "確認完成後，試行的準時交貨週數會更新。",
+    "askedBy": "AI",
+    "askedAt": "@-1d 08:00",
+    "fromRun": null,
+    "todoType": "action",
+    "milestoneId": "m1t",
+    "actionConfirm": {
+      "taskId": "f3"
+    },
+    "questions": [
+      {
+        "id": "done",
+        "priority": 1,
+        "ask": "農場甲第二週的貨是否已點收？",
+        "kind": "choice",
+        "effect": "now",
+        "options": [
+          {
+            "text": "已完成",
+            "rec": true
+          },
+          {
+            "text": "未完成，需要改期"
+          }
+        ],
+        "value": "已完成",
+        "why": "按收貨時間表，應已於昨日清晨點收。"
+      }
+    ]
+  }
+]

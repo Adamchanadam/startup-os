@@ -1,0 +1,45 @@
+window.STARTUP_OS_PAGE = {
+  "format": "startup-os.proofread/0.1",
+  "page": { "id": "intake-farm-test", "kind": "intake", "revision": 1, "preparedAt": "2026-10-01", "nextAskOn": "2026-10-07", "latestUntil": "2026-10-29", "minutes": 3 },
+  "company": { "name": "從田間到餐桌", "initials": "田桌", "oneLiner": "把本地小農的當季蔬菜直送注重來源的中小型餐廳。" },
+  "sources": [{ "id": "bm", "title": "商業模式（創辦人原文）", "date": "2026-10-01" }],
+  "glance": {
+    "guide": "測試用虛構資料。",
+    "tip": { "headline": "下一步：約第三位農場主（丙）見面", "why": "供應未穩，先有農場先可以向餐廳試單。" },
+    "rows": [
+      { "id": "g1", "plan": "G1", "label": "本季要去到邊", "value": "季末：三間餐廳連續四週每週下單，同時有三個農場簽約供貨", "origin": "doc", "src": [{ "from": "bm" }] },
+      { "id": "g5", "plan": "G5", "label": "下一個對外動作", "value": "約第三位農場主（丙）見面", "origin": "doc", "flagTo": "m1",
+        "options": [{ "text": "約第三位農場主（丙）見面", "rec": true, "flagTo": "m1" }, { "text": "向第一間餐廳提試單", "flagTo": "m2" }] }
+    ],
+    "status": { "title": "目前進度", "items": [
+      { "id": "s1", "plan": "G4", "kind": "grade", "label": "農場甲、乙有興趣", "value": "none", "origin": "ai" },
+      { "id": "s2", "plan": "G4", "kind": "grade", "label": "餐廳接觸過", "value": "none", "origin": "ai" }
+    ] }
+  },
+  "path": {
+    "guide": "測試用。",
+    "milestones": [
+      { "id": "m1", "short": "農場簽約", "why": "下一步是見農場主。",
+        "event": { "id": "m1-e", "label": "第 1 站：真事", "value": "三個農場簽供應協議", "origin": "ai" },
+        "depth": [
+          { "id": "m1-d1", "label": "1", "value": "有穩定每週出貨同直接客戶", "origin": "ai" },
+          { "id": "m1-d2", "label": "2", "value": "農場主本人決定，一次會面可簽", "origin": "ai" },
+          { "id": "m1-d3", "label": "3", "value": "一頁簡介、採購量同付款條款草案", "origin": "ai" },
+          { "id": "m1-d4", "label": "4", "value": "要求獨家或供應量不穩", "origin": "ai" },
+          { "id": "m1-d5", "label": "5", "value": "三個農場來自本季目標", "origin": "doc" }
+        ] },
+      { "id": "m2", "short": "餐廳試單", "why": "有農場先試單。",
+        "event": { "id": "m2-e", "label": "第 2 站：真事", "value": "五間餐廳各完成一次試單並提供回饋", "origin": "ai" },
+        "depth": [
+          { "id": "m2-d1", "label": "1", "value": "來源可追溯同穩定供應", "origin": "doc" },
+          { "id": "m2-d2", "label": "2", "value": "", "origin": "missing" },
+          { "id": "m2-d3", "label": "3", "value": "", "origin": "missing" },
+          { "id": "m2-d4", "label": "4", "value": "試食後不落單", "origin": "ai" },
+          { "id": "m2-d5", "label": "5", "value": "五間試單以求三間續用", "origin": "doc" }
+        ] },
+      { "id": "m3", "short": "首條送貨路線", "why": "試單後轉每週。", "event": { "id": "m3-e", "label": "第 3 站：真事", "value": "至少一間餐廳轉每週固定送貨並開始按週收費", "origin": "ai" } },
+      { "id": "m4", "short": "牌照保險", "why": "可同送貨並行。", "event": { "id": "m4-e", "label": "第 4 站：真事", "value": "所需牌照批出、保險生效", "origin": "ai" } },
+      { "id": "m5", "short": "連續四週", "why": "等於季末目標。", "event": { "id": "m5-e", "label": "第 5 站：真事", "value": "三間餐廳連續四週每週下單", "origin": "doc", "src": [{ "from": "bm" }] } }
+    ]
+  }
+};
