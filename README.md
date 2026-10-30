@@ -2,6 +2,8 @@
 
 給已在用 Claude Code 的創辦人與小團隊：一隊在你電腦上運行的 AI 團隊，先替你準備資料、草稿和練習；見客、收款、簽約仍由你決定和去做。
 
+介紹頁：https://adamchanadam.github.io/startup-os/
+
 startup-os 由「陶土 AI 團隊」代表：一位統籌成員，按工作分出六位生意大腦成員（生意體檢、紅藍對打、情景演練、商機掃描、路線推演、客戶推進追蹤）。角色、世界觀與用法的唯一定義處是 [`docs/plan/brand-characters-spec.md`](docs/plan/brand-characters-spec.md)。
 
 ## 現時版本：0.31（2026-10-30）
